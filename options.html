@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Private Mouse Gestures - Options</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      color: #333;
+      max-width: 800px;
+    }
+    .header {
+      margin-bottom: 20px;
+    }
+    .note {
+      background-color: #f8f9fa;
+      border-left: 4px solid #5b9bd5;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    select {
+      width: 100%;
+      padding: 6px;
+    }
+    .save-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .save-btn:hover {
+      background-color: #45a049;
+    }
+    .privacy-section {
+      margin-top: 30px;
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Private Mouse Gestures Options</h1>
+    <p>Configure your mouse gestures below. Changes will be saved automatically.</p>
+  </div>
+  
+  <div class="note">
+    <p><strong>Privacy Note:</strong> This extension works entirely offline and doesn't collect or transmit any data. Your gesture configurations are stored locally on your device only.</p>
+  </div>
+  
+  <table id="gestureTable">
+    <thead>
+      <tr>
+        <th>Gesture</th>
+        <th>Action</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody id="gestureTableBody">
+      <!-- Will be populated by JavaScript -->
+    </tbody>
+  </table>
+  
+  <button id="saveButton" class="save-btn">Save Settings</button>
+  
+  <div class="privacy-section">
+    <h2>Privacy Information</h2>
+    <p>This extension is designed with privacy in mind:</p>
+    <ul>
+      <li>No data collection or analytics</li>
+      <li>No external connections - works 100% offline</li>
+      <li>Minimal permissions required</li>
+      <li>All configuration stored locally</li>
+      <li>Open source code - verify what it does yourself</li>
+    </ul>
+  </div>
+  
+  <script src="options.js"></script>
+</body>
+</html>
