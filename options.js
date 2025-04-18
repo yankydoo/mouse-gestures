@@ -1,5 +1,3 @@
-
-// options.js - Script for the options page
 document.addEventListener('DOMContentLoaded', () => {
     const gestureTableBody = document.getElementById('gestureTableBody');
     const saveButton = document.getElementById('saveButton');
@@ -32,13 +30,27 @@ document.addEventListener('DOMContentLoaded', () => {
       'up-down',
       'down-up',
       'left-right',
-      'right-left'
+      'right-left',
+      // Add more complex gestures
+      'up-right-down',
+      'up-left-down',
+      'down-right-up',
+      'down-left-up',
+      'left-up-right',
+      'left-down-right',
+      'right-up-left',
+      'right-down-left',
+      'circle'
     ];
     
     // Load current settings
     function loadSettings() {
-      chrome.storage.local.get('gestures', (data) => {
+      chrome.storage.local.get(['gestures', 'showGesturePreview'], (data) => {
         const gestures = data.gestures || {};
+        
+        // Set the preview checkbox
+        const showGesturePreview = document.getElementById('showGesturePreview');
+        showGesturePreview.checked = data.showGesturePreview === true;
         
         // Clear the table
         gestureTableBody.innerHTML = '';
@@ -134,4 +146,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Save button
     saveButton.addEventListener('click', saveSettings);
+    
+    // Gesture preview option
+    const showGesturePreview = document.getElementById('showGesturePreview');
+    showGesturePreview.addEventListener('change', () => {
+      chrome.storage.local.set({ showGesturePreview: showGesturePreview.checked });
+    });
   });

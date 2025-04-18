@@ -7,15 +7,27 @@ const DEFAULT_GESTURES = {
   'down-up': { action: 'reload', description: 'Reload page' }
 };
 
-// Initialize default gestures on installation
+// Initialize default gestures and settings on installation
 chrome.runtime.onInstalled.addListener(() => {
   console.log('Extension installed');
-  chrome.storage.local.get('gestures', (data) => {
+  chrome.storage.local.get(['gestures', 'showGesturePreview'], (data) => {
+    const defaults = {};
+    
     if (!data.gestures) {
       console.log('Setting default gestures');
-      chrome.storage.local.set({ gestures: DEFAULT_GESTURES });
+      defaults.gestures = DEFAULT_GESTURES;
     } else {
       console.log('Existing gestures found:', data.gestures);
+    }
+    
+    // Initialize showGesturePreview setting if not already set
+    if (data.showGesturePreview === undefined) {
+      console.log('Setting default preview setting');
+      defaults.showGesturePreview = true; // Enable by default
+    }
+    
+    if (Object.keys(defaults).length > 0) {
+      chrome.storage.local.set(defaults);
     }
   });
 });
